@@ -41,7 +41,7 @@ From: nvidia/cuda:11.8.0-devel-ubuntu22.04
 
   # Installs the dependencies of the test case
   conda install --yes python=3.7
-  pip install -r /opt/FloorTransformation/pytorch/requirements.txt
+  pip install -r /opt/pytorch/requirements.txt
 
 %runscript
   export PYTHONWARNINGS="ignore"
