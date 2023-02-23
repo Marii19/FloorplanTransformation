@@ -25,8 +25,8 @@
 
 # This included file contains the definition for $LOCAL_JOB_DIR to be used locally on the node.
 source "/etc/slurm/local_job_dir.sh"
-echo  \${LOCAL_JOB_DIR}"/job_results"
-mkdir -p \${LOCAL_JOB_DIR}"/job_results"
+echo  /${LOCAL_JOB_DIR}"/job_results"
+mkdir -p /${LOCAL_JOB_DIR}"/job_results"
 # Launch the apptainer image with --nv for nvidia support. Two bind mounts are used: 
 # - One for the ImageNet dataset and 
 # - One for the results (e.g. checkpoint data that you may store in $LOCAL_JOB_DIR on the node
