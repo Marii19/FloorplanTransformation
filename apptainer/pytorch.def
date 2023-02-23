@@ -2,7 +2,7 @@ Bootstrap: docker
 From: nvidia/cuda:11.8.0-devel-ubuntu22.04
 
 %files
-  # Copies over the source code for the ResNet50 training script
+  # Copies over the source code 
   ../../. /opt/FloorTransformation
 
 %environment
@@ -44,7 +44,9 @@ From: nvidia/cuda:11.8.0-devel-ubuntu22.04
   pip install -r /opt/FloorTransformation/pytorch/requirements.txt
 
 %runscript
+  export PYTHONWARNINGS="ignore"
+  nvidia-smi
+  ls -l
+  "$@"
 
-  cd /opt/FloorTransformation/pytorch 
-  python train.py --task prediction 
   
