@@ -44,9 +44,8 @@ From: nvidia/cuda:11.8.0-devel-ubuntu22.04
   pip install -r /opt/pytorch/requirements.txt
 
 %runscript
-  export PYTHONWARNINGS="ignore"
-  nvidia-smi
-  ls -l
-  "$@"
+  cd /opt/pytorch
+  python train.py "$@"
+
 
   
