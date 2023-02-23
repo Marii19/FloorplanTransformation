@@ -25,13 +25,23 @@
 
 # This included file contains the definition for $LOCAL_JOB_DIR to be used locally on the node.
 source "/etc/slurm/local_job_dir.sh"
-
+echo  \${LOCAL_JOB_DIR}"/job_results"
+mkdir -p \${LOCAL_JOB_DIR}"/job_results"
 # Launch the apptainer image with --nv for nvidia support. Two bind mounts are used: 
 # - One for the ImageNet dataset and 
 # - One for the results (e.g. checkpoint data that you may store in $LOCAL_JOB_DIR on the node
 echo export PYTHONWARNINGS="ignore"
 apptainer run --nv --bind ${DATAPOOL3}/datasets/bimkit:/mnt/datasets
-    --bind ${LOCAL_JOB_DIR}:/mnt/output $SCRIPT_DIR/train_segmentation.sif bash "/train.sh"
+    --bind ${LOCAL_JOB_DIR}:/mnt/output /git/FloorplanTransformation/apptainer/pytorch.sfi bash "/train.sh"
 
-# This command copies all results generated in $LOCAL_JOB_DIR back to the submit folder regarding the job id.
-cp -r ${LOCAL_JOB_DIR} ${SLURM_SUBMIT_DIR}/${SLURM_JOB_ID}
+cd \${LOCAL_JOB_DIR}
+ls -l
+tar -cf pytorch_\${SLURM_JOB_ID}.tar -C job_results .
+cp pytorch_\${SLURM_JOB_ID}.tar \${SLURM_SUBMIT_DIR}/output
+rm -rf \${LOCAL_JOB_DIR}/job_results
+
+mkdir -p \${SLURM_SUBMIT_DIR}/output/pytorch_\${SLURM_JOB_ID}
+tar -xvf \${SLURM_SUBMIT_DIR}/output/pytorch_\${SLURM_JOB_ID}.tar \
+    -C \${SLURM_SUBMIT_DIR}/output/pytorch_\${SLURM_JOB_ID}
+rm \${SLURM_SUBMIT_DIR}/output/pytorch_\${SLURM_JOB_ID}.tar
+mv \${SLURM_SUBMIT_DIR}/\${SLURM_JOB_ID}*.out \${SLURM_SUBMIT_DIR}/output/pytorch_\${SLURM_JOB_ID}
