@@ -5,6 +5,18 @@ def parse_args():
     Parse input arguments
     """
     parser = argparse.ArgumentParser(description='PlaneFlow')
+
+    """
+    Own 
+    """
+    
+    parser.add_argument('--dataset-path', dest='dataset path',
+                        help='path to the folder containing dataset',
+                        default='../data', type=str)
+    """
+    end own
+    """
+    
     
     parser.add_argument('--task', dest='task',
                         help='task type: [train, test, predict]',

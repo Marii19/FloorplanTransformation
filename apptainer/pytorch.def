@@ -3,7 +3,7 @@ From: nvidia/cuda:11.8.0-devel-ubuntu22.04
 
 %files
   # Copies over the source code 
-  ../../. /opt/FloorTransformation
+  ../. /opt
 
 %environment
   # The Anaconda environment needs to be available during execution

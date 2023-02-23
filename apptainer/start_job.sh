@@ -26,7 +26,7 @@ sbatch -p $1 <<EOH
 #!/bin/bash
 
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=aleixo.cambeiro@hhi.fraunhofer.de
+#SBATCH --mail-user=mariusz.trzeciakiewicz@hhi.fraunhofer.de
 #SBATCH --job-name=${JOB_NAME}
 #SBATCH --output=%j_%x.out
 #SBATCH --nodes=1
