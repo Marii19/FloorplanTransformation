@@ -31,11 +31,9 @@ echo "${LOCAL_JOB_DIR}/job_results"
 # - One for the ImageNet dataset and 
 # - One for the results (e.g. checkpoint data that you may store in $LOCAL_JOB_DIR on the node
 echo export PYTHONWARNINGS="ignore"
-ls -l
-apptainer run --nv --bind ${DATAPOOL3}/datasets/bimkit:/mnt/datasets --bind ${LOCAL_JOB_DIR}:/mnt/output git/FloorplanTransformation/apptainer/pytorch.sif bash "/train.sh"
+:apptainer run --nv --bind ${DATAPOOL3}/datasets/bimkit:/mnt/datasets --bind ${LOCAL_JOB_DIR}:/mnt/output git/FloorplanTransformation/apptainer/pytorch.sif bash "train.sh"
 
 cd ${LOCAL_JOB_DIR}
-ls -l
 tar -cf pytorch_${SLURM_JOB_ID}.tar -C job_results .
 cp pytorch_${SLURM_JOB_ID}.tar ${SLURM_SUBMIT_DIR}/output
 rm -rf ${LOCAL_JOB_DIR}/job_results
