@@ -17,5 +17,9 @@
 
 #SBATCH --mem=2GB
 
+source "/etc/slurm/local_job_dir.sh"
+mkdir -p "${LOCAL_JOB_DIR}/job_results"
+echo "${LOCAL_JOB_DIR}/job_results"
 
+echo export PYTHONWARNINGS="ignore"
 apptainer run --nv ./git/FloorplanTransformation/apptainer/pytorch.sif
