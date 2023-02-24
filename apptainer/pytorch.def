@@ -1,22 +1,19 @@
 Bootstrap: docker
-From: tensorflow/tensorflow:2.8.0-gpu
+From: nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 
 %files
- ../pytorch/requirements.txt /opt
+  # Copies over the source code 
+  ../. /opt
+
 %environment
   # The Anaconda environment needs to be available during execution
   export "PATH=/opt/conda/bin:$PATH"
   export DEBIAN_FRONTEND=noninteractive
 
 %post
-  rm /etc/apt/sources.list.d/cuda.list
-  rm /etc/apt/sources.list.d/nvidia-ml.list
-  apt-key del 7fa2af80
-
-  apt-get update
-  apt-get install -y python3-opencv libcairo2 libcairo2-dev
-
+  
   # Installs some general dependencies
+  apt-get update
   apt install glibc-source
   apt-get install --no-install-recommends --assume-yes curl
 
@@ -44,7 +41,7 @@ From: tensorflow/tensorflow:2.8.0-gpu
 
   # Installs the dependencies of the test case
   conda install --yes python=3.7
-  pip install -r /opt/requirements.txt
+  pip install -r /opt/pytorch/requirements.txt
 
 %runscript
   "$@"
