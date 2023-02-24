@@ -3,6 +3,4 @@ opencv-python
 PuLP
 scikit-image
 scipy
-torch
-torchvision
 tqdm
