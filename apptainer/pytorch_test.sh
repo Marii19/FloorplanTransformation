@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=thorsten.selinger@hhi.fraunhofer.de
+#SBATCH --mail-user=mariusz.trzeciakiewicz@hhi.fraunhofer.de
 
 #         stdout and stderr of this job will go into a file named like the job (%x) with SLURM_JOB_ID (%j)
 #SBATCH --output=%j.out
@@ -17,12 +17,5 @@
 
 #SBATCH --mem=2GB
 
-echo "CUDA_VISIBLE_DEVICES -->$CUDA_VISIBLE_DEVICES<-- a zero inidicates device at index zero is available."
-
-if [[ "0" == "$CUDA_VISIBLE_DEVICES" ]]; then
-  echo "CUDA_VISIBLE_DEVICES is good in slurm environment";
-else
-  echo "CUDA_VISIBLE_DEVICES error: in slurm environment";
-fi  
 
 apptainer run --nv ./git/FloorplanTransformation/apptainer/pytorch.sif
