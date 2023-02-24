@@ -1,1 +1,1 @@
-ls /mnt -l
+ls /mnt/code -l
