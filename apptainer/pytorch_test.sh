@@ -23,3 +23,15 @@ echo "${LOCAL_JOB_DIR}/job_results"
 
 echo export PYTHONWARNINGS="ignore"
 apptainer run --nv ./git/FloorplanTransformation/apptainer/pytorch.sif
+
+cd ${LOCAL_JOB_DIR}
+
+tar -cf pytorch_${SLURM_JOB_ID}.tar -C job_results .
+cp pytorch_${SLURM_JOB_ID}.tar ${SLURM_SUBMIT_DIR}/output
+rm -rf ${LOCAL_JOB_DIR}/job_results
+
+mkdir -p ${SLURM_SUBMIT_DIR}/output/pytorch_${SLURM_JOB_ID}
+tar -xvf ${SLURM_SUBMIT_DIR}/output/pytorch_${SLURM_JOB_ID}.tar \
+    -C ${SLURM_SUBMIT_DIR}/output/pytorch_${SLURM_JOB_ID}
+rm ${SLURM_SUBMIT_DIR}/output/pytorch_${SLURM_JOB_ID}.tar
+mv ${SLURM_SUBMIT_DIR}/${SLURM_JOB_ID}*.out ${SLURM_SUBMIT_DIR}/output/pytorch_${SLURM_JOB_ID}
