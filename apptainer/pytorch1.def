@@ -12,6 +12,11 @@ From: pytorch/pytorch:1.9.1-cuda11.1-cudnn8-devel
 %files
     ../pytorch/requirements.txt /opt
 
+    apt-get update
+    apt-get install -y python3-opencv libcairo2 libcairo2-dev
+    python -m pip install -r /opt/requirements.txt
+
+    
 
 %runscript
   export PYTHONWARNINGS="ignore"
