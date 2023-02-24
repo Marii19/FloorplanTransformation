@@ -2,7 +2,7 @@ Bootstrap: docker
 From: tensorflow/tensorflow:2.8.0-gpu
 
 %files
-
+ ../pytorch/requirements.txt /opt
 %environment
   # The Anaconda environment needs to be available during execution
   export "PATH=/opt/conda/bin:$PATH"
@@ -44,7 +44,7 @@ From: tensorflow/tensorflow:2.8.0-gpu
 
   # Installs the dependencies of the test case
   conda install --yes python=3.7
-  pip install -r /opt/pytorch/requirements.txt
+  pip install -r /opt/requirements.txt
 
 %runscript
   "$@"
