@@ -10,7 +10,7 @@ def parse_args():
     Own 
     """
     
-    parser.add_argument('--dataset-path', dest='dataset path',
+    parser.add_argument('--datasetPath', dest='dataset path',
                         help='path to the folder containing dataset',
                         default='../data', type=str)
     """
