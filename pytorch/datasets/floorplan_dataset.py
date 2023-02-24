@@ -232,7 +232,6 @@ class FloorplanDataset(Dataset):
         self.split = split
         self.random = random
         self.imagePaths = []
-        print(self.options)
         self.dataFolder = self.options.datasetPath
         with open(self.dataFolder + split + '.txt') as f:
             for line in f:
