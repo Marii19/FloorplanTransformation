@@ -155,6 +155,7 @@ def visualizeBatch(options, images, dicts, indexOffset=0, prefix=''):
 
 if __name__ == '__main__':
     args = parse_args()
+    os.system("ls -l")
     
     args.keyname = 'floorplan'
     #args.keyname += '_' + args.dataset
